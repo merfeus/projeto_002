@@ -1,38 +1,33 @@
 package com.example.projeto_002.repository
 
-import android.content.Context
-import com.example.projeto_002.database.AppDataBase
 import com.example.projeto_002.model.GitHubResponse
 import com.example.projeto_002.service.RetrofitBuilder
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class GitHubRepository(private val context: Context) {
+class GitHubRepository() {
 
-    private val dataBase = AppDataBase.getDataBase(context)
     val service = RetrofitBuilder.getGitHubService()
 
-    fun fecthAll(onComplete: (GitHubResponse?, String?) -> Unit) {
+    fun fecthAll(onComplete: (List<GitHubResponse>?, String?) -> Unit) {
         val call = service.getAllRepo()
-        call.enqueue(object : Callback<GitHubResponse> {
+        call.enqueue(object : Callback<List<GitHubResponse>> {
             override fun onResponse(
-                call: Call<GitHubResponse>,
-                response: Response<GitHubResponse>
+                call: Call<List<GitHubResponse>>,
+                response: Response<List<GitHubResponse>>
             ) {
-                if (response.body() != null) {
+                if (response.body() != null){
                     onComplete(response.body(), null)
-                    println(onComplete)
-                } else {
-                    onComplete(null, "Nenhum Repositorio Encontrado")
+                } else{
+                    onComplete(null, "Nao retornou repositorios")
                 }
             }
-
-            override fun onFailure(call: Call<GitHubResponse>, t: Throwable) {
+            override fun onFailure(call: Call<List<GitHubResponse>>, t: Throwable) {
                 onComplete(null, t.message)
             }
-        })
 
+        })
     }
 }
 

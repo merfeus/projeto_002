@@ -1,17 +1,9 @@
 package com.example.projeto_002.model
 
-import androidx.room.Embedded
-import androidx.room.Entity
-import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
-data class GitHubResponse(val result: List<GitHubRepo>)
+data class GitHubResponse(
 
-//Mapeando API + Add no Banco com Room
-@Entity(tableName = "git_repo")
-data class GitHubRepo(
-
-    @PrimaryKey
     @SerializedName("id")
     val id : Int,
     @SerializedName("name")
@@ -24,7 +16,7 @@ data class GitHubRepo(
     val language: String,
     @SerializedName("forks")
     val forks: Int,
-    @Embedded
+    @SerializedName("owner")
     val owner : Owner,
 
 
@@ -35,7 +27,7 @@ data class Owner(
     @SerializedName("login")
     val login: String,
     @SerializedName("id")
-    val id: Int,
+    val idOwner: Int,
     @SerializedName("avatar_url")
     val avatarUrl: String,
 )

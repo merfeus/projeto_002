@@ -7,5 +7,5 @@ import retrofit2.http.GET
 interface ServiceGitHub {
 
     @GET("/search/repositories?q=language:Java&sort=stars&page=1")
-    fun getAllRepo(): Call<GitHubResponse>
+    fun getAllRepo(): Call<List<GitHubResponse>>
 }
