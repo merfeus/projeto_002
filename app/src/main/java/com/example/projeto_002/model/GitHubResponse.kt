@@ -1,48 +1,41 @@
-package com.example.projeto_002.repository
+package com.example.projeto_002.model
 
-import androidx.room.ColumnInfo
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
-data class GitHubResponse(val result: List<GitHub>)
+data class GitHubResponse(val result: List<GitHubRepo>)
 
-@Entity
 //Mapeando API + Add no Banco com Room
-data class GitHub(
+@Entity(tableName = "git_repo")
+data class GitHubRepo(
 
     @PrimaryKey
-    @ColumnInfo(name = "git_id")
     @SerializedName("id")
     val id : Int,
-
-    @ColumnInfo(name = "git_nodeId")
-    @SerializedName("node_id")
-    val nodeId : String,
-
-
-    @ColumnInfo(name = "git_nome")
     @SerializedName("name")
     val name : String,
+    @SerializedName("description")
+    val description: String,
+    @SerializedName("pulls_url")
+    val pullsUrl: String,
+    @SerializedName("language")
+    val language: String,
+    @SerializedName("forks")
+    val forks: Int,
+    @Embedded
+    val owner : Owner,
 
 
-    @ColumnInfo(name = "git_fullName")
-    @SerializedName("full_name")
-    val fullName : String,
+)
 
+data class Owner(
 
-    @ColumnInfo(name = "git_private")
-    @SerializedName("private")
-    val private : String,
-
-
-    @ColumnInfo(name = "git_owner")
-    @SerializedName("owner")
-    val owner : String,
-
-
-
-
-){
-
-}
+    @SerializedName("login")
+    val login: String,
+    @SerializedName("id")
+    val id: Int,
+    @SerializedName("avatar_url")
+    val avatarUrl: String,
+)

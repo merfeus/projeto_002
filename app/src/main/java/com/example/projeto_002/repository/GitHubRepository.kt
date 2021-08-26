@@ -2,6 +2,7 @@ package com.example.projeto_002.repository
 
 import android.content.Context
 import com.example.projeto_002.database.AppDataBase
+import com.example.projeto_002.model.GitHubResponse
 import com.example.projeto_002.service.RetrofitBuilder
 import retrofit2.Call
 import retrofit2.Callback
@@ -21,6 +22,7 @@ class GitHubRepository(private val context: Context) {
             ) {
                 if (response.body() != null) {
                     onComplete(response.body(), null)
+                    println(onComplete)
                 } else {
                     onComplete(null, "Nenhum Repositorio Encontrado")
                 }

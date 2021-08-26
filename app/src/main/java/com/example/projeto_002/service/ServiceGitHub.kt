@@ -1,6 +1,6 @@
 package com.example.projeto_002.service
 
-import com.example.projeto_002.repository.GitHubResponse
+import com.example.projeto_002.model.GitHubResponse
 import retrofit2.Call
 import retrofit2.http.GET
 

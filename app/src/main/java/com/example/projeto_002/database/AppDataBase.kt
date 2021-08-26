@@ -5,12 +5,12 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.projeto_002.database.dao.GitDAO
-import com.example.projeto_002.repository.GitHub
+import com.example.projeto_002.model.GitHubRepo
+import com.example.projeto_002.model.Owner
 
 @Database(
-    entities = [GitHub::class], version = 1
+    entities = [GitHubRepo::class, Owner::class], version = 1
 )
-
 abstract class AppDataBase : RoomDatabase() {
 
 
