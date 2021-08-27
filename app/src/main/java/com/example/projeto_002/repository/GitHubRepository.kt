@@ -20,9 +20,10 @@ class GitHubRepository() {
                 if (response.body() != null){
                     onComplete(response.body(), null)
                 } else{
-                    onComplete(null, "Nao retornou repositorios")
+                    onComplete(null, "Nao encontrado Repositorios")
                 }
             }
+
             override fun onFailure(call: Call<List<GitHubResponse>>, t: Throwable) {
                 onComplete(null, t.message)
             }

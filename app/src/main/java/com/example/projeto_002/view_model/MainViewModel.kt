@@ -11,7 +11,7 @@ class MainViewModel : ViewModel() {
     private val repository = GitHubRepository()
 
     private val _GITREPO = MutableLiveData<List<GitHubResponse>>()
-    val poke: LiveData<List<GitHubResponse>> = _GITREPO
+    val gitRepo: LiveData<List<GitHubResponse>> = _GITREPO
 
     private val _ERROR = MutableLiveData<String>()
     val error: LiveData<String> = _ERROR
