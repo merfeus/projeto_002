@@ -47,6 +47,7 @@ class GitRepoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         gitResponse.owner?.let {
             Glide.with(itemView.context)
                 .load(it.avatarUrl)
+                .placeholder(R.drawable.ic_baseline_account_circle_24)
                 .into(binding.avatarUser)
         }
     }
