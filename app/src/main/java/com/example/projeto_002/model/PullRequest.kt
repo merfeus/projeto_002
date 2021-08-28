@@ -2,15 +2,6 @@ package com.example.projeto_002.model
 
 import com.google.gson.annotations.SerializedName
 
-data class GitHubPulls()
-
-data class User(
-    @SerializedName("login")
-    val login: String,
-    @SerializedName("avatar_url")
-    val avatarUrl: String
-)
-
 data class PullRequest(
     @SerializedName("title")
     val title: String,
@@ -19,6 +10,15 @@ data class PullRequest(
     @SerializedName("user")
     val user: User,
     @SerializedName("body")
-    val body: String
-
+    val body: String,
+    @SerializedName("html_url")
+    val htmlUrl: String
 )
+data class User(
+    @SerializedName("login")
+    val login: String,
+    @SerializedName("avatar_url")
+    val avatarUrl: String,
+)
+
+

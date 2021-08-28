@@ -2,12 +2,14 @@ package com.example.projeto_002.model
 
 import com.google.gson.annotations.SerializedName
 
-data class GitHubResponse(
+data class GitHubResponse(val items: List<Repository>)
+
+data class Repository(
 
     @SerializedName("id")
-    val id : Int,
+    val id: Int,
     @SerializedName("name")
-    val name : String,
+    val name: String,
     @SerializedName("description")
     val description: String,
     @SerializedName("pulls_url")
@@ -17,9 +19,10 @@ data class GitHubResponse(
     @SerializedName("forks")
     val forks: Int,
     @SerializedName("owner")
-    val owner : Owner,
-
-
+    val owner: Owner,
+    @SerializedName("stargazers_count")
+    val stars: Int,
+    var details: PullRequest
 )
 
 data class Owner(

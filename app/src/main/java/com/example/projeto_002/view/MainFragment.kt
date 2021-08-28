@@ -12,6 +12,8 @@ import com.example.projeto_002.R
 import com.example.projeto_002.adapter.AdapterGit
 import com.example.projeto_002.databinding.MainFragmentBinding
 import com.example.projeto_002.model.GitHubResponse
+import com.example.projeto_002.model.Repository
+import com.example.projeto_002.view.dialog.PullRequestFragment
 import com.example.projeto_002.view_model.MainViewModel
 import com.google.android.material.snackbar.Snackbar
 
@@ -21,7 +23,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
     private lateinit var binding: MainFragmentBinding
     private val adapter = AdapterGit()
 
-    private val observerGitRepo = Observer<List<GitHubResponse>> {
+    private val observerGitRepo = Observer<List<Repository>> {
         adapter.refesh(it)
     }
 
@@ -42,6 +44,13 @@ class MainFragment : Fragment(R.layout.main_fragment) {
         viewModel.error.observe(viewLifecycleOwner, observerError)
         viewModel.getAllRepo()
 
+//        binding. { showBottomSheetDialog() }
+
+    }
+
+    fun showBottomSheetDialog(){
+        val bottomSheet = PullRequestFragment()
+        bottomSheet.show(parentFragmentManager, "dialog_pull")
     }
 
 }

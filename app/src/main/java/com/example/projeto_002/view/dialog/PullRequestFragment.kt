@@ -1,18 +1,15 @@
-package com.example.projeto_002.view
+package com.example.projeto_002.view.dialog
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.projeto_002.R
+import com.example.projeto_002.view_model.PullRequestViewModel
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class PullRequestFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = PullRequestFragment()
-    }
+class PullRequestFragment : BottomSheetDialogFragment() {
 
     private lateinit var viewModel: PullRequestViewModel
 
@@ -23,10 +20,9 @@ class PullRequestFragment : Fragment() {
         return inflater.inflate(R.layout.pull_request_fragment, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(PullRequestViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
 }

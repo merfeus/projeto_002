@@ -3,8 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/ic_baseline_star_24.xml" value="0.287962962962963" />
         <entry key="app/src/main/res/layout/item_git_repository.xml" value="0.45" />
         <entry key="app/src/main/res/layout/main_fragment.xml" value="0.14361702127659576" />
+        <entry key="app/src/main/res/layout/pull_request_fragment.xml" value="0.21014492753623187" />
       </map>
     </option>
   </component>

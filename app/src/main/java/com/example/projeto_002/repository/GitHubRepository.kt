@@ -1,6 +1,7 @@
 package com.example.projeto_002.repository
 
 import com.example.projeto_002.model.GitHubResponse
+import com.example.projeto_002.model.PullRequest
 import com.example.projeto_002.service.RetrofitBuilder
 import retrofit2.Call
 import retrofit2.Callback
@@ -10,25 +11,51 @@ class GitHubRepository() {
 
     val service = RetrofitBuilder.getGitHubService()
 
-    fun fecthAll(onComplete: (List<GitHubResponse>?, String?) -> Unit) {
+    fun fecthAll(onComplete: (GitHubResponse?, String?) -> Unit) {
         val call = service.getAllRepo()
-        call.enqueue(object : Callback<List<GitHubResponse>> {
+        call.enqueue(object : Callback<GitHubResponse> {
+
             override fun onResponse(
-                call: Call<List<GitHubResponse>>,
-                response: Response<List<GitHubResponse>>
+                call: Call<GitHubResponse>,
+                response: Response<GitHubResponse>
             ) {
-                if (response.body() != null){
+                if (response.body() != null) {
                     onComplete(response.body(), null)
-                } else{
-                    onComplete(null, "Nao encontrado Repositorios")
+                } else {
+                    onComplete(null, "Nenhum encontrado")
                 }
             }
 
-            override fun onFailure(call: Call<List<GitHubResponse>>, t: Throwable) {
+            override fun onFailure(call: Call<GitHubResponse>, t: Throwable) {
+                onComplete(null, t.message)
+            }
+        })
+    }
+
+    fun fecthPullDetails(
+        nameUser: String,
+        nameRepository: String,
+        onComplete: (List<PullRequest>?, String?) -> Unit
+    ) {
+        val call = service.getAllPull(nameUser, nameRepository)
+        call.enqueue(object : Callback<List<PullRequest>> {
+            override fun onResponse(
+                call: Call<List<PullRequest>>,
+                response: Response<List<PullRequest>>
+            ) {
+                if (response.body() != null) {
+                    onComplete(response.body(), null)
+                } else{
+                    onComplete(null, "Nao foram encontradas PR")
+                }
+            }
+
+            override fun onFailure(call: Call<List<PullRequest>>, t: Throwable) {
                 onComplete(null, t.message)
             }
 
         })
     }
 }
+
 

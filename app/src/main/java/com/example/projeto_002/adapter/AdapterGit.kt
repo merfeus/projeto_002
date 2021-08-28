@@ -7,17 +7,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.projeto_002.R
 import com.example.projeto_002.databinding.ItemGitRepositoryBinding
-import com.example.projeto_002.model.GitHubResponse
+import com.example.projeto_002.model.PullRequest
+import com.example.projeto_002.model.Repository
+import com.example.projeto_002.utils.toUpperFirstChar
 
-class AdapterGit : RecyclerView.Adapter<GitRepoViewHolder>() {
+class AdapterGit() : RecyclerView.Adapter<GitRepoViewHolder>() {
 
-    private var listOfGitRepo: MutableList<GitHubResponse> = mutableListOf()
+    private var listOfGitRepo: MutableList<Repository> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GitRepoViewHolder {
-
-        val itemVIew =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_git_repository, parent, false)
-        return GitRepoViewHolder(itemVIew)
+        return LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_git_repository, parent, false).let {
+                GitRepoViewHolder(it)
+            }
     }
 
     override fun onBindViewHolder(holder: GitRepoViewHolder, position: Int) {
@@ -28,23 +30,26 @@ class AdapterGit : RecyclerView.Adapter<GitRepoViewHolder>() {
 
     override fun getItemCount(): Int = listOfGitRepo.size
 
-    fun refesh(newList: List<GitHubResponse>) {
+    fun refesh(newList: List<Repository>) {
         listOfGitRepo = arrayListOf()
         listOfGitRepo.addAll(newList)
         notifyDataSetChanged()
     }
 }
-class GitRepoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+
+class GitRepoViewHolder(itemView: View) :
+    RecyclerView.ViewHolder(itemView) {
 
     private var binding: ItemGitRepositoryBinding = ItemGitRepositoryBinding.bind(itemView)
 
-    fun bind(gitResponse: GitHubResponse){
+    fun bind(reposi: Repository) {
 
-        binding.nameRepository.text = gitResponse.name
-        binding.descriptionRepository.text = gitResponse.description
-        binding.starsRepository.text = gitResponse.language
-        binding.forkRepository.text = gitResponse.forks.toString()
-        gitResponse.owner?.let {
+        binding.nameRepository.text = reposi.name.toUpperFirstChar()
+        binding.descriptionRepository.text = reposi.description.toUpperFirstChar()
+        binding.starsRepository.text = reposi.stars.toString()
+        binding.nameOwner.text = reposi.owner.login.toUpperFirstChar()
+        binding.forkRepository.text = reposi.forks.toString()
+        reposi.owner?.let {
             Glide.with(itemView.context)
                 .load(it.avatarUrl)
                 .placeholder(R.drawable.ic_baseline_account_circle_24)
