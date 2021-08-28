@@ -34,24 +34,23 @@ class GitHubRepository() {
 
     fun fecthPullDetails(
         nameUser: String,
-        nameRepository: String,
-        onComplete: (List<PullRequest>?, String?) -> Unit
+        callback: (Boolean) -> Unit
     ) {
-        val call = service.getAllPull(nameUser, nameRepository)
+        val call = service.getAllPull(nameUser)
         call.enqueue(object : Callback<List<PullRequest>> {
             override fun onResponse(
                 call: Call<List<PullRequest>>,
                 response: Response<List<PullRequest>>
             ) {
                 if (response.body() != null) {
-                    onComplete(response.body(), null)
+                    callback(true)
                 } else{
-                    onComplete(null, "Nao foram encontradas PR")
+                    false
                 }
             }
 
             override fun onFailure(call: Call<List<PullRequest>>, t: Throwable) {
-                onComplete(null, t.message)
+                println(t.message)
             }
 
         })

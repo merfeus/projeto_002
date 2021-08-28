@@ -21,7 +21,21 @@ class MainFragment : Fragment(R.layout.main_fragment) {
 
     private lateinit var viewModel: MainViewModel
     private lateinit var binding: MainFragmentBinding
-    private val adapter = AdapterGit()
+    private val adapter = AdapterGit{
+
+        val bundle = Bundle()
+        bundle.putSerializable("repo", it.id)
+
+        val fragment = PullRequestFragment()
+        fragment.arguments = bundle
+
+        requireActivity().supportFragmentManager
+            .beginTransaction()
+            .hide(this)
+            .add(R.id.container, fragment)
+            .addToBackStack("repos")
+            .commit()
+    }
 
     private val observerGitRepo = Observer<List<Repository>> {
         adapter.refesh(it)

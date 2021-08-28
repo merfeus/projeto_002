@@ -5,6 +5,7 @@ import com.example.projeto_002.model.PullRequest
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Url
 
 interface ServiceGitHub {
 
@@ -12,8 +13,5 @@ interface ServiceGitHub {
     fun getAllRepo(): Call<GitHubResponse>
 
     @GET("/repos/{name}/{nameRepository}/pulls/")
-    fun getAllPull(
-        @Path("nameUser") nameUser: String,
-        @Path("nameRepository") name: String
-    ): Call<List<PullRequest>>
+    fun getAllPull(@Url url: String): Call<List<PullRequest>>
 }

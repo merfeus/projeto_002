@@ -11,7 +11,7 @@ import com.example.projeto_002.model.PullRequest
 import com.example.projeto_002.model.Repository
 import com.example.projeto_002.utils.toUpperFirstChar
 
-class AdapterGit() : RecyclerView.Adapter<GitRepoViewHolder>() {
+class AdapterGit(val itemOnClick: (Repository) -> Unit) : RecyclerView.Adapter<GitRepoViewHolder>() {
 
     private var listOfGitRepo: MutableList<Repository> = mutableListOf()
 
@@ -25,6 +25,9 @@ class AdapterGit() : RecyclerView.Adapter<GitRepoViewHolder>() {
     override fun onBindViewHolder(holder: GitRepoViewHolder, position: Int) {
         listOfGitRepo[position].apply {
             holder.bind(this)
+        }
+        holder.itemView.setOnClickListener {
+            itemOnClick(listOfGitRepo[position])
         }
     }
 

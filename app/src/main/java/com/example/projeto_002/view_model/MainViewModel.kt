@@ -28,8 +28,4 @@ class MainViewModel : ViewModel() {
             }
         }
     }
-
-    private fun loadPullDetails(){
-
-    }
 }

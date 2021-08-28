@@ -8,22 +8,20 @@ import com.example.projeto_002.repository.GitHubRepository
 
 class PullRequestViewModel : ViewModel() {
 
-    val _PULLREQUEST = MutableLiveData<List<PullRequest>>()
+    private val _PULLREQUEST = MutableLiveData<List<PullRequest>>()
     val pullRequest: LiveData<List<PullRequest>> = _PULLREQUEST
 
-    val _ERROR = MutableLiveData<String>()
+    private val _ERROR = MutableLiveData<String>()
     val error: LiveData<String> = _ERROR
 
-    fun fetchPullRequest(nameUser: String, nameRepository: String) {
+    fun fetchPullRequest(nameUser: String) {
         val repository = GitHubRepository()
-        repository.fecthPullDetails(nameUser, nameRepository) { response, error ->
-            response?.let {
-                _PULLREQUEST.value = it
-            }
+        repository.fecthPullDetails(nameUser) {
+            _PULLREQUEST.value
+        }
 
-            error?.let {
-                _ERROR.value = it
-            }
+        error?.let {
+            _ERROR.value
         }
     }
 }
