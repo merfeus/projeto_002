@@ -3,16 +3,14 @@ package com.example.projeto_002.view
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.projeto_002.R
 import com.example.projeto_002.adapter.AdapterGit
 import com.example.projeto_002.databinding.MainFragmentBinding
-import com.example.projeto_002.model.GitHubResponse
 import com.example.projeto_002.model.Repository
+import com.example.projeto_002.utils.replaceFragment
 import com.example.projeto_002.view.dialog.PullRequestFragment
 import com.example.projeto_002.view_model.MainViewModel
 import com.google.android.material.snackbar.Snackbar
@@ -22,20 +20,12 @@ class MainFragment : Fragment(R.layout.main_fragment) {
     private lateinit var viewModel: MainViewModel
     private lateinit var binding: MainFragmentBinding
     private val adapter = AdapterGit{
-
-        val bundle = Bundle()
-        bundle.putSerializable("repo", it.id)
-
-        val fragment = PullRequestFragment()
-        fragment.arguments = bundle
-
-        requireActivity().supportFragmentManager
-            .beginTransaction()
-            .hide(this)
-            .add(R.id.container, fragment)
-            .addToBackStack("repos")
-            .commit()
+        requireActivity().replaceFragment(PullRequestFragment.newInstance(
+            it.owner.login,
+            it.nameRepository
+        ))
     }
+
 
     private val observerGitRepo = Observer<List<Repository>> {
         adapter.refesh(it)
@@ -60,11 +50,6 @@ class MainFragment : Fragment(R.layout.main_fragment) {
 
 //        binding. { showBottomSheetDialog() }
 
-    }
-
-    fun showBottomSheetDialog(){
-        val bottomSheet = PullRequestFragment()
-        bottomSheet.show(parentFragmentManager, "dialog_pull")
     }
 
 }

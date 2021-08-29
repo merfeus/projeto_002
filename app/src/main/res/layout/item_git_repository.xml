@@ -77,22 +77,19 @@
                         android:gravity="left"
                         android:text="Stars"
                         android:textColor="@color/yellow"
-                        android:textSize="16sp"/>
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/forkRepository"
                         android:layout_width="10dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:drawableLeft="@drawable/ic_baseline_timeline_24"
+                        android:drawableLeft="@drawable/code_fork_1"
                         android:fontFamily="sans-serif-black"
                         android:gravity="left"
                         android:text="Fork"
                         android:textColor="@color/yellow"
-                        android:textSize="16sp"/>
-
-
-
+                        android:textSize="16sp" />
                 </LinearLayout>
 
 

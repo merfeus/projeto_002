@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.projeto_002.R
 import com.example.projeto_002.databinding.ItemGitRepositoryBinding
-import com.example.projeto_002.model.PullRequest
 import com.example.projeto_002.model.Repository
 import com.example.projeto_002.utils.toUpperFirstChar
 
@@ -25,9 +24,10 @@ class AdapterGit(val itemOnClick: (Repository) -> Unit) : RecyclerView.Adapter<G
     override fun onBindViewHolder(holder: GitRepoViewHolder, position: Int) {
         listOfGitRepo[position].apply {
             holder.bind(this)
-        }
-        holder.itemView.setOnClickListener {
-            itemOnClick(listOfGitRepo[position])
+
+            holder.itemView.setOnClickListener {
+                itemOnClick(this)
+            }
         }
     }
 
@@ -47,7 +47,7 @@ class GitRepoViewHolder(itemView: View) :
 
     fun bind(reposi: Repository) {
 
-        binding.nameRepository.text = reposi.name.toUpperFirstChar()
+        binding.nameRepository.text = reposi.nameRepository.toUpperFirstChar()
         binding.descriptionRepository.text = reposi.description.toUpperFirstChar()
         binding.starsRepository.text = reposi.stars.toString()
         binding.nameOwner.text = reposi.owner.login.toUpperFirstChar()

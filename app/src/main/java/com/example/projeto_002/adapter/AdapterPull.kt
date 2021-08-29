@@ -24,6 +24,10 @@ class AdapterPull(val itemClick: (PullRequest) -> Unit) : RecyclerView.Adapter<P
     override fun onBindViewHolder(holder: PullListViewHolder, position: Int) {
         listOfPull[position].apply {
             holder.bind(this)
+
+            holder.itemView.setOnClickListener{
+                itemClick(this)
+            }
         }
     }
 

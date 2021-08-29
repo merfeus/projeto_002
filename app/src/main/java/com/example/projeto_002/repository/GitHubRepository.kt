@@ -33,24 +33,25 @@ class GitHubRepository() {
     }
 
     fun fecthPullDetails(
-        nameUser: String,
-        callback: (Boolean) -> Unit
+        name: String,
+        nameRepository: String,
+        onComplete: (List<PullRequest>?, String?) -> Unit
     ) {
-        val call = service.getAllPull(nameUser)
+        val call = service.getAllPull(name, nameRepository)
         call.enqueue(object : Callback<List<PullRequest>> {
             override fun onResponse(
                 call: Call<List<PullRequest>>,
                 response: Response<List<PullRequest>>
             ) {
                 if (response.body() != null) {
-                    callback(true)
-                } else{
-                    false
+                    onComplete(response.body(), null)
+                } else {
+                    onComplete(null, "Nenhum pull request encontrado")
                 }
             }
 
             override fun onFailure(call: Call<List<PullRequest>>, t: Throwable) {
-                println(t.message)
+                onComplete(null, t.message)
             }
 
         })
