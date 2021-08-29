@@ -1,16 +1,15 @@
 package com.example.projeto_002.view
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.View
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.projeto_002.R
 import com.example.projeto_002.adapter.AdapterGit
 import com.example.projeto_002.databinding.MainFragmentBinding
 import com.example.projeto_002.model.Repository
-import com.example.projeto_002.utils.replaceFragment
 import com.example.projeto_002.view.dialog.PullRequestFragment
 import com.example.projeto_002.view_model.MainViewModel
 import com.google.android.material.snackbar.Snackbar
@@ -19,11 +18,11 @@ class MainFragment : Fragment(R.layout.main_fragment) {
 
     private lateinit var viewModel: MainViewModel
     private lateinit var binding: MainFragmentBinding
-    private val adapter = AdapterGit{
-        requireActivity().replaceFragment(PullRequestFragment.newInstance(
-            it.owner.login,
-            it.nameRepository
-        ))
+    private val adapter = AdapterGit {
+
+        val bottomSheet = PullRequestFragment.newInstance(it.owner.login, it.nameRepository)
+        bottomSheet.show(parentFragmentManager, "dialog_pull")
+
     }
 
 
@@ -47,8 +46,6 @@ class MainFragment : Fragment(R.layout.main_fragment) {
         viewModel.gitRepo.observe(viewLifecycleOwner, observerGitRepo)
         viewModel.error.observe(viewLifecycleOwner, observerError)
         viewModel.getAllRepo()
-
-//        binding. { showBottomSheetDialog() }
 
     }
 

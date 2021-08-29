@@ -3,8 +3,9 @@ package com.example.projeto_002.view.dialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
-import androidx.fragment.app.Fragment
+import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
@@ -13,12 +14,13 @@ import com.example.projeto_002.adapter.AdapterPull
 import com.example.projeto_002.databinding.PullRequestFragmentBinding
 import com.example.projeto_002.model.PullRequest
 import com.example.projeto_002.view_model.PullRequestViewModel
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.snackbar.Snackbar
 
-const val REPO = "repo_key"
 const val OWNER = "owner"
+const val REPO = "repo_key"
 
-class PullRequestFragment : Fragment(R.layout.pull_request_fragment) {
+class PullRequestFragment : BottomSheetDialogFragment() {
 
     companion object {
         fun newInstance(login: String, nameRepository: String): PullRequestFragment {
@@ -46,6 +48,14 @@ class PullRequestFragment : Fragment(R.layout.pull_request_fragment) {
         Snackbar.make(requireView(), it, Snackbar.LENGTH_LONG).show()
     }
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.pull_request_fragment, container, false)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(PullRequestViewModel::class.java)
@@ -63,4 +73,6 @@ class PullRequestFragment : Fragment(R.layout.pull_request_fragment) {
         viewModel.fetchPullRequest(owner, repo)
 
     }
+
+    override fun getTheme(): Int = R.style.CustomBottomSheetDialog
 }

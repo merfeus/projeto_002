@@ -3,8 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/code_fork_1.xml" value="0.24074074074074073" />
+        <entry key="app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.2851851851851852" />
         <entry key="app/src/main/res/drawable/ic_baseline_star_24.xml" value="0.287962962962963" />
+        <entry key="app/src/main/res/drawable/ic_baseline_task_alt_24.xml" value="0.2851851851851852" />
+        <entry key="app/src/main/res/drawable/ic_baseline_timeline_24.xml" value="0.2851851851851852" />
         <entry key="app/src/main/res/layout/item_git_repository.xml" value="0.45" />
+        <entry key="app/src/main/res/layout/item_pull.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/main_activity.xml" value="0.20606884057971014" />
         <entry key="app/src/main/res/layout/main_fragment.xml" value="0.14361702127659576" />
         <entry key="app/src/main/res/layout/pull_request_fragment.xml" value="0.21014492753623187" />
       </map>

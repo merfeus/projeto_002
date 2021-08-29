@@ -17,10 +17,7 @@
             android:id="@+id/cardItem"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="12dp"
-            android:layout_marginBottom="16dp"
+            android:layout_margin="5dp"
             app:cardCornerRadius="8dp"
             app:cardElevation="10dp">
 
@@ -33,12 +30,12 @@
                     android:id="@+id/titlePull"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
+                    android:layout_margin="3dp"
                     android:fontFamily="sans-serif-black"
-                    android:gravity="center"
+                    android:gravity="left"
                     android:text="Pull Request Name"
                     android:textColor="@color/blue"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -47,7 +44,7 @@
                     android:id="@+id/linearLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
+                    android:layout_margin="3dp"
                     android:orientation="vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -64,7 +61,27 @@
                         android:gravity="left"
                         android:text="body"
                         android:textColor="@color/yellow"
-                        android:textSize="16sp" />
+                        android:textSize="15sp" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/avatarUserPull"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="right"
+                        android:elevation="12dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_launcher_foreground"
+                        tools:layout_editor_absoluteX="275dp" />
+
+                    <TextView
+                        android:id="@+id/nameOwnerPull"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:gravity="right"
+                        android:text="Name Owner"
+                        android:textSize="10sp" />
 
                     <TextView
                         android:id="@+id/datePull"
@@ -73,32 +90,10 @@
                         android:layout_marginBottom="8dp"
                         android:layout_weight="1"
                         android:fontFamily="sans-serif-black"
-                        android:gravity="left"
+                        android:gravity="right"
                         android:text="date"
                         android:textColor="@color/yellow"
-                        android:textSize="16sp" />
-
-
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/avatarUserPull"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="left"
-                        android:elevation="12dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/ic_launcher_foreground"
-                        tools:layout_editor_absoluteX="275dp" />
-
-                    <TextView
-                        android:id="@+id/nameOwnerPull"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:gravity="center"
-                        android:text="Name Owner"
                         android:textSize="10sp" />
-
                 </LinearLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
