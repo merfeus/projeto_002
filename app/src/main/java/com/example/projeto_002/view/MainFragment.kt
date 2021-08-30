@@ -16,15 +16,17 @@ import com.google.android.material.snackbar.Snackbar
 
 class MainFragment : Fragment(R.layout.main_fragment) {
 
-    private lateinit var viewModel: MainViewModel
-    private lateinit var binding: MainFragmentBinding
-    private val adapter = AdapterGit {
-
-        val bottomSheet = PullRequestFragment.newInstance(it.owner.login, it.nameRepository)
-        bottomSheet.show(parentFragmentManager, "dialog_pull")
-
+    companion object {
+        fun newInstance() = MainFragment()
     }
 
+    private lateinit var viewModel: MainViewModel
+    private lateinit var binding: MainFragmentBinding
+    private val LANGUAGE = "Java"
+    private val adapter = AdapterGit {
+        val bottomSheet = PullRequestFragment.newInstance(it.owner.login, it.nameRepository)
+        bottomSheet.show(parentFragmentManager, "dialog_pull")
+    }
 
     private val observerGitRepo = Observer<List<Repository>> {
         adapter.refesh(it)
@@ -32,6 +34,9 @@ class MainFragment : Fragment(R.layout.main_fragment) {
 
     private val observerError = Observer<String?> {
         Snackbar.make(requireView(), it, Snackbar.LENGTH_LONG).show()
+    }
+    private val observerPage = Observer<Int>{ page ->
+        viewModel.getAllRepo(LANGUAGE, page)
     }
 
 
@@ -45,7 +50,17 @@ class MainFragment : Fragment(R.layout.main_fragment) {
 
         viewModel.gitRepo.observe(viewLifecycleOwner, observerGitRepo)
         viewModel.error.observe(viewLifecycleOwner, observerError)
-        viewModel.getAllRepo()
+        viewModel.page.observe(viewLifecycleOwner, observerPage)
+
+        viewModel.getAllRepo(LANGUAGE)
+
+        binding.nextPage.setOnClickListener {
+            viewModel.nextPage()
+        }
+
+        binding.prevPage.setOnClickListener {
+            viewModel.prevPage()
+        }
 
     }
 

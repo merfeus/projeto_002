@@ -8,6 +8,7 @@ import com.bumptech.glide.Glide
 import com.example.projeto_002.R
 import com.example.projeto_002.databinding.ItemGitRepositoryBinding
 import com.example.projeto_002.model.Repository
+import com.example.projeto_002.utils.formatMin
 import com.example.projeto_002.utils.toUpperFirstChar
 
 class AdapterGit(val itemOnClick: (Repository) -> Unit) : RecyclerView.Adapter<GitRepoViewHolder>() {
@@ -48,10 +49,10 @@ class GitRepoViewHolder(itemView: View) :
     fun bind(reposi: Repository) {
 
         binding.nameRepository.text = reposi.nameRepository.toUpperFirstChar()
-        binding.descriptionRepository.text = reposi.description.toUpperFirstChar()
-        binding.starsRepository.text = reposi.stars.toString()
+        binding.descriptionRepository.text = reposi.description?.toUpperFirstChar()
+        binding.starsRepository.text = reposi.stars.formatMin()
         binding.nameOwner.text = reposi.owner.login.toUpperFirstChar()
-        binding.forkRepository.text = reposi.forks.toString()
+        binding.forkRepository.text = reposi.forks.formatMin()
         reposi.owner?.let {
             Glide.with(itemView.context)
                 .load(it.avatarUrl)

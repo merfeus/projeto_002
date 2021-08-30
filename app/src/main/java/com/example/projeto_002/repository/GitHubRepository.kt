@@ -7,12 +7,21 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class GitHubRepository() {
+class GitHubRepository {
 
     val service = RetrofitBuilder.getGitHubService()
 
-    fun fecthAll(onComplete: (GitHubResponse?, String?) -> Unit) {
-        val call = service.getAllRepo()
+    fun fecthAll(
+        language: String,
+        sort: String = "stars",
+        page: Int = 1,
+        onComplete: (GitHubResponse?, String?) -> Unit
+    ) {
+        val call = service.fecthRepo(
+            language = "language:$language",
+            sort = sort,
+            page = page
+        )
         call.enqueue(object : Callback<GitHubResponse> {
 
             override fun onResponse(

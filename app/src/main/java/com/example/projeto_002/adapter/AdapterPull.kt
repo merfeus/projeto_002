@@ -8,10 +8,10 @@ import com.bumptech.glide.Glide
 import com.example.projeto_002.R
 import com.example.projeto_002.databinding.ItemPullBinding
 import com.example.projeto_002.model.PullRequest
-import com.example.projeto_002.model.Repository
 import com.example.projeto_002.utils.toUpperFirstChar
 
-class AdapterPull(val itemClick: (PullRequest) -> Unit) : RecyclerView.Adapter<PullListViewHolder>() {
+class AdapterPull(val itemClick: (PullRequest) -> Unit) :
+    RecyclerView.Adapter<PullListViewHolder>() {
 
     private var listOfPull = mutableListOf<PullRequest>()
 
@@ -26,7 +26,7 @@ class AdapterPull(val itemClick: (PullRequest) -> Unit) : RecyclerView.Adapter<P
         listOfPull[position].apply {
             holder.bind(this)
 
-            holder.itemView.setOnClickListener{
+            holder.itemView.setOnClickListener {
                 itemClick(this)
             }
         }
@@ -41,13 +41,13 @@ class AdapterPull(val itemClick: (PullRequest) -> Unit) : RecyclerView.Adapter<P
     }
 }
 
-class PullListViewHolder(item: View) : RecyclerView.ViewHolder(item){
+class PullListViewHolder(item: View) : RecyclerView.ViewHolder(item) {
     private val binding = ItemPullBinding.bind(item)
 
-    fun bind(pullRequest: PullRequest){
+    fun bind(pullRequest: PullRequest) {
         binding.titlePull.text = pullRequest.title.toUpperFirstChar()
-        binding.datePull.text = pullRequest.createdAt.toUpperFirstChar()
-        binding.bodyPull.text = pullRequest.body.toUpperFirstChar()
+        binding.datePull.text = pullRequest.createdAt
+        binding.bodyPull.text = pullRequest.body?.toUpperFirstChar()
         binding.nameOwnerPull.text = pullRequest.user.login.toUpperFirstChar()
 
         pullRequest.user.let {

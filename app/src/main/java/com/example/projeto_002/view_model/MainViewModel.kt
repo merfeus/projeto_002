@@ -18,8 +18,12 @@ class MainViewModel : ViewModel() {
     private val _ERROR = MutableLiveData<String>()
     val error: LiveData<String> = _ERROR
 
-    fun getAllRepo(){
-        repository.fecthAll(){response, error ->
+    private val _PAGE = MutableLiveData<Int>(0)
+    val page: LiveData<Int> = _PAGE
+
+
+    fun getAllRepo(language: String, page: Int = 1){
+        repository.fecthAll(language = language, page = page){response, error ->
             response?.let {
                 _GITREPO.value = it.items
             }
@@ -27,5 +31,14 @@ class MainViewModel : ViewModel() {
                 _ERROR.value = it
             }
         }
+    }
+
+    fun nextPage(){
+        _PAGE.value = _PAGE.value!! + 1
+
+    }
+
+    fun prevPage(){
+        _PAGE.value = _PAGE.value!! -1
     }
 }

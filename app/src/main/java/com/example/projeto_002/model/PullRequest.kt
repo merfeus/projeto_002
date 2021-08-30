@@ -13,7 +13,7 @@ data class PullRequest(
     @SerializedName("user")
     val user: User,
     @SerializedName("body")
-    val body: String,
+    val body: String?,
     @SerializedName("html_url")
     val htmlUrl: String
 )

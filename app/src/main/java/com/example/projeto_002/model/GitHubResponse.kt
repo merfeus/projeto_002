@@ -6,7 +6,7 @@ import java.io.Serializable
 data class GitHubResponse(
 
     @SerializedName("total_count")
-    val total: Int,
+    val total: Long,
     @SerializedName("items")
     val items: List<Repository>
 
@@ -15,11 +15,11 @@ data class GitHubResponse(
 data class Repository(
 
     @SerializedName("id")
-    val id: Int,
+    val id: Long,
     @SerializedName("name")
     val nameRepository: String,
     @SerializedName("description")
-    val description: String,
+    val description: String?,
     @SerializedName("pulls_url")
     val pullsUrl: String,
     @SerializedName("language")
