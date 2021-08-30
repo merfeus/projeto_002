@@ -3,7 +3,14 @@ package com.example.projeto_002.model
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-data class GitHubResponse(val items: List<Repository>)
+data class GitHubResponse(
+
+    @SerializedName("total_count")
+    val total: Int,
+    @SerializedName("items")
+    val items: List<Repository>
+
+    )
 
 data class Repository(
 

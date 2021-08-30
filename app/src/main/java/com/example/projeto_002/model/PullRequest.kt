@@ -16,7 +16,7 @@ data class PullRequest(
     val body: String,
     @SerializedName("html_url")
     val htmlUrl: String
-) : Serializable
+)
 data class User(
     @SerializedName("login")
     val login: String,

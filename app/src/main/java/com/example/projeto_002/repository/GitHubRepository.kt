@@ -46,7 +46,7 @@ class GitHubRepository() {
                 if (response.body() != null) {
                     onComplete(response.body(), null)
                 } else {
-                    onComplete(null, "Nenhum pull request encontrado")
+                    onComplete(null, "Não foram encontradas PR")
                 }
             }
 
