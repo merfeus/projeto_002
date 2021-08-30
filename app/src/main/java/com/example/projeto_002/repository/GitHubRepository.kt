@@ -2,6 +2,7 @@ package com.example.projeto_002.repository
 
 import com.example.projeto_002.model.GitHubResponse
 import com.example.projeto_002.model.PullRequest
+import com.example.projeto_002.model.Repository
 import com.example.projeto_002.service.RetrofitBuilder
 import retrofit2.Call
 import retrofit2.Callback
@@ -64,6 +65,10 @@ class GitHubRepository {
             }
 
         })
+    }
+
+    fun fetchAllFromAPI(name: String, nameRepository: String) : List<Repository>{
+       return service.fetchFiltered(name, nameRepository)
     }
 }
 

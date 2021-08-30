@@ -33,6 +33,13 @@ class MainViewModel : ViewModel() {
         }
     }
 
+    fun fetchFiltered(name: String, nameRepository: String){
+      val filteredLister = repository.fetchAllFromAPI(name, nameRepository)
+        filteredLister.let {
+            _GITREPO.value = it
+        }
+    }
+
     fun nextPage(){
         _PAGE.value = _PAGE.value!! + 1
 

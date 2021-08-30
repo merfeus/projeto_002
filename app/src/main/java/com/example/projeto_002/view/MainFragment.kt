@@ -1,6 +1,8 @@
 package com.example.projeto_002.view
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -22,7 +24,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
 
     private lateinit var viewModel: MainViewModel
     private lateinit var binding: MainFragmentBinding
-    private val LANGUAGE = "Java"
+    private val LANGUAGE = "Kotlin"
     private val adapter = AdapterGit {
         val bottomSheet = PullRequestFragment.newInstance(it.owner.login, it.nameRepository)
         bottomSheet.show(parentFragmentManager, "dialog_pull")
@@ -53,6 +55,28 @@ class MainFragment : Fragment(R.layout.main_fragment) {
         viewModel.page.observe(viewLifecycleOwner, observerPage)
 
         viewModel.getAllRepo(LANGUAGE)
+
+        binding.searchEditText.editText?.addTextChangedListener( object : TextWatcher{
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                p0?.let {
+                    if (it.length > 3){
+                        viewModel.fetchFiltered(it.toString(), it.toString())
+                    }
+                }
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+                p0?.let {
+                    if (it.isEmpty()){
+                        viewModel.getAllRepo(LANGUAGE)
+                    }
+                }
+            }
+
+        })
 
         binding.nextPage.setOnClickListener {
             viewModel.nextPage()
