@@ -35,7 +35,6 @@ class AdapterGit(val itemOnClick: (Repository) -> Unit) : RecyclerView.Adapter<G
     override fun getItemCount(): Int = listOfGitRepo.size
 
     fun refesh(newList: List<Repository>) {
-        listOfGitRepo = arrayListOf()
         listOfGitRepo.addAll(newList)
         notifyDataSetChanged()
     }

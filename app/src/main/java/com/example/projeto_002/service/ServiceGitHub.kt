@@ -22,10 +22,4 @@ interface ServiceGitHub {
         @Path("name") name: String,
         @Path("nameRepository") nameRepository: String
     ): Call<List<PullRequest>>
-
-    @GET("/repos/{name}/{nameRepository}")
-    fun fetchFiltered(
-        @Path("name") name: String,
-        @Path("nameRepository") nameRepository: String
-    ) : List<Repository>
 }

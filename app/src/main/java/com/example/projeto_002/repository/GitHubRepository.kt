@@ -66,10 +66,6 @@ class GitHubRepository {
 
         })
     }
-
-    fun fetchAllFromAPI(name: String, nameRepository: String) : List<Repository>{
-       return service.fetchFiltered(name, nameRepository)
-    }
 }
 
 
