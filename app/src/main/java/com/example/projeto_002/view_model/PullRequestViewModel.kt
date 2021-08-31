@@ -5,8 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.projeto_002.model.PullRequest
 import com.example.projeto_002.repository.GitHubRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class PullRequestViewModel : ViewModel() {
+@HiltViewModel
+class PullRequestViewModel @Inject constructor(private val repository: GitHubRepository) : ViewModel() {
 
     private val _PULLREQUEST = MutableLiveData<List<PullRequest>>()
     val pullRequest: LiveData<List<PullRequest>> = _PULLREQUEST
@@ -15,7 +18,6 @@ class PullRequestViewModel : ViewModel() {
     val error: LiveData<String> = _ERROR
 
     fun fetchPullRequest(name: String?, nameRepository: String?){
-        val repository = GitHubRepository()
         if (!name.isNullOrEmpty() && !nameRepository.isNullOrEmpty()) {
             repository.fecthPullDetails(name, nameRepository) { response, error ->
                 response?.apply {

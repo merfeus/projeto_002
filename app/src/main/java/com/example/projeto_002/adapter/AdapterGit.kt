@@ -54,7 +54,7 @@ class GitRepoViewHolder(itemView: View) :
         binding.forkRepository.text = reposi.forks.formatMin()
         reposi.owner?.let {
             Glide.with(itemView.context)
-                .load(it.avatarUrl)
+                .load(it.avatarUrlOwner)
                 .placeholder(R.drawable.ic_baseline_account_circle_24)
                 .into(binding.avatarUser)
         }

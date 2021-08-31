@@ -48,11 +48,11 @@ class PullListViewHolder(item: View) : RecyclerView.ViewHolder(item) {
         binding.titlePull.text = pullRequest.title.toUpperFirstChar()
         binding.datePull.text = pullRequest.createdAt
         binding.bodyPull.text = pullRequest.body?.toUpperFirstChar()
-        binding.nameOwnerPull.text = pullRequest.user.login.toUpperFirstChar()
+        binding.nameOwnerPull.text = pullRequest.userPull.login.toUpperFirstChar()
 
-        pullRequest.user.let {
+        pullRequest.userPull.let {
             Glide.with(itemView.context)
-                .load(it.avatarUrl)
+                .load(it.avatarUrlUser)
                 .placeholder(R.drawable.ic_baseline_account_circle_24)
                 .into(binding.avatarUserPull)
         }

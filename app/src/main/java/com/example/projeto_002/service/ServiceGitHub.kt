@@ -2,7 +2,6 @@ package com.example.projeto_002.service
 
 import com.example.projeto_002.model.GitHubResponse
 import com.example.projeto_002.model.PullRequest
-import com.example.projeto_002.model.Repository
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path

@@ -1,16 +1,19 @@
 package com.example.projeto_002.repository
 
+import com.example.projeto_002.database.dao.GitRepositoryDAO
 import com.example.projeto_002.model.GitHubResponse
 import com.example.projeto_002.model.PullRequest
 import com.example.projeto_002.model.Repository
-import com.example.projeto_002.service.RetrofitBuilder
+import com.example.projeto_002.service.ServiceGitHub
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
-class GitHubRepository {
-
-    val service = RetrofitBuilder.getGitHubService()
+class GitHubRepository @Inject constructor(
+    private val gitDAO: GitRepositoryDAO,
+    private val service: ServiceGitHub
+) {
 
     fun fecthAll(
         language: String,
@@ -66,6 +69,19 @@ class GitHubRepository {
 
         })
     }
+
+    fun insertTODb() {
+
+    }
+
+    fun fetchRepositoryFormDatabase(language: String) {
+
+    }
+
+    fun fetchAllFromDataBaseWithFilter(query: String): List<Repository> {
+        return gitDAO.fetchFiltered(query)
+    }
 }
+
 
 

@@ -1,6 +1,8 @@
 package com.example.projeto_002.view
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
@@ -16,7 +18,9 @@ import com.example.projeto_002.model.Repository
 import com.example.projeto_002.view.dialog.PullRequestFragment
 import com.example.projeto_002.view_model.MainViewModel
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainFragment : Fragment(R.layout.main_fragment) {
 
     companion object {
@@ -58,7 +62,32 @@ class MainFragment : Fragment(R.layout.main_fragment) {
 
 
         setEventBuuton()
+        searchRepository()
 
+    }
+
+    private fun searchRepository() {
+        binding.searchEditText.editText?.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                p0?.let {
+                    if (it.length > 3) {
+                        viewModel.fetchFilteredFromDataBase(it.toString())
+                    }
+                }
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+                p0?.let {
+                    if (it.isEmpty()) {
+                        viewModel.getAllRepo(LANGUAGE)
+                    }
+                }
+            }
+
+        })
     }
 
 
@@ -75,6 +104,6 @@ class MainFragment : Fragment(R.layout.main_fragment) {
 
     private fun callForMorItens() {
         binding.linearLayout2.visibility = VISIBLE
-            viewModel.nextPage()
+        viewModel.nextPage()
     }
 }

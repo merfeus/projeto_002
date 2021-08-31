@@ -3,7 +3,9 @@ package com.example.projeto_002
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.projeto_002.view.MainFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -16,10 +16,12 @@ import com.example.projeto_002.model.PullRequest
 import com.example.projeto_002.view_model.PullRequestViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 
 const val OWNER = "owner"
 const val REPO = "repo_key"
 
+@AndroidEntryPoint
 class PullRequestFragment : BottomSheetDialogFragment() {
 
     companion object {
