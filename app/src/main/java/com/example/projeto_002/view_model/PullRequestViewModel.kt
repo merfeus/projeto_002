@@ -28,10 +28,6 @@ class PullRequestViewModel @Inject constructor(private val repository: GitHubRep
                     _ERROR.value = it
                 }
             }
-
-            error?.let {
-                _ERROR.value
-            }
         }
     }
 }

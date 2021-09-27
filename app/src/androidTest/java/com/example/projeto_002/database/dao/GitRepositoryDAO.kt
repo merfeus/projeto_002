@@ -58,7 +58,7 @@ class GitRepositoryDAOTest {
             ),
             forks = 1,
             language = "",
-            owner = Owner(1L, avatarUrlOwner = "", idOwner = 1, login = "a"),
+            owner = Owner(1L, avatarUrlOwner = "", login = "a"),
             pullsUrl = "",
             stars = 4
         )
@@ -90,7 +90,7 @@ class GitRepositoryDAOTest {
             ),
             forks = 1,
             language = "Kotlin",
-            owner = Owner(1L, avatarUrlOwner = "", idOwner = 1, login = "a"),
+            owner = Owner(1L, avatarUrlOwner = "", login = "a"),
             pullsUrl = "",
             stars = 4
         )
@@ -113,7 +113,7 @@ class GitRepositoryDAOTest {
             ),
             forks = 1,
             language = "Kotlin",
-            owner = Owner(1L, avatarUrlOwner = "", idOwner = 1, login = "a"),
+            owner = Owner(1L, avatarUrlOwner = "", login = "a"),
             pullsUrl = "",
             stars = 4
         )
@@ -136,7 +136,7 @@ class GitRepositoryDAOTest {
             ),
             forks = 1,
             language = "Java",
-            owner = Owner(1L, avatarUrlOwner = "", idOwner = 1, login = "a"),
+            owner = Owner(1L, avatarUrlOwner = "", login = "a"),
             pullsUrl = "",
             stars = 4
         )
